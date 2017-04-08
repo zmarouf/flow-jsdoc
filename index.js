@@ -297,19 +297,18 @@ function decorateFunctions(node) {
                     var type = funcNode.jsdoc.params[i].type.replace(/^\?/, '');
 
                     param.update(
-                        param.left.source() + ": " + type + ' = ' + param.right.source()
+                        param.left.source() + " : " + type + ' = ' + param.right.source()
                     );
                 }
             } else {
                 if (funcNode.jsdoc.params[i].name === param.name) {
                     param.update(
-                        param.source() + ": " + funcNode.jsdoc.params[i].type
+                        param.source() + " : " + funcNode.jsdoc.params[i].type
                     );
                 }
             }
         }
     });
-
     // Pair up the return value if possible
     // we only support 1 return type currently
     var returnDoc = funcNode.jsdoc.returns[0];
@@ -395,6 +394,5 @@ module.exports = function(src, opts) {
         decorateFunctions(node);
         decorateClasses(node);
     });
-
     return output;
 };
